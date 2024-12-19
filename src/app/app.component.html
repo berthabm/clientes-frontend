@@ -1,0 +1,77 @@
+<div class="container mt-4">
+  <h2>Clientes desde LINQ</h2>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>País</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clientsLinq; let i = index">
+        <td>{{ client.id }}</td>
+        <td>{{ client.name }}</td>
+        <td>{{ client.phone | phone }}</td>
+        <td>{{ client.country }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Paginación LINQ -->
+  <div class="d-flex justify-content-center">
+    <nav aria-label="Paginación de clientes LINQ">
+      <ul class="pagination">
+        <li class="page-item" [class.disabled]="pageLinq.PageNumber <= 1">
+          <button class="page-link" (click)="onPageChangeLinq(pageLinq.PageNumber - 1)" aria-label="Anterior">Anterior</button>
+        </li>
+        <li class="page-item">
+          <span class="page-link">Página {{ pageLinq.PageNumber }} de {{ totalClientsLinq }}</span>
+        </li>
+        <li class="page-item" [class.disabled]="pageLinq.PageNumber >= totalClientsLinq">
+          <button class="page-link" (click)="onPageChangeLinq(pageLinq.PageNumber + 1)" aria-label="Siguiente">Siguiente</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <h2>Clientes desde Stored Procedure</h2>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>País</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clientsSP; let i = index">
+        <td>{{ client.id }}</td>
+        <td>{{ client.name }}</td>
+        <td>{{ client.phone | phone }}</td>
+        <td>{{ client.country }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Paginación SP -->
+  <div class="d-flex justify-content-center">
+    <nav aria-label="Paginación de clientes SP">
+      <ul class="pagination">
+        <li class="page-item" [class.disabled]="pageSP.PageNumber <= 1">
+          <button class="page-link" (click)="onPageChangeSP(pageSP.PageNumber - 1)" aria-label="Anterior">Anterior</button>
+        </li>
+        <li class="page-item">
+          <span class="page-link">Página {{ pageSP.PageNumber }} de {{ totalClientsSP }}</span>
+        </li>
+        <li class="page-item" [class.disabled]="pageSP.PageNumber >= totalClientsSP">
+          <button class="page-link" (click)="onPageChangeSP(pageSP.PageNumber + 1)" aria-label="Siguiente">Siguiente</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
